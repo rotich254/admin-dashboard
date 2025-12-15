@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Newsletter Pro</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-primary);
+            transition: background 0.3s ease;
+        }
+        
+        .login-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            max-width: 450px;
+            width: 100%;
+        }
+        
+        .login-header {
+            background: var(--primary);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            color: white;
+        }
+        
+        .login-header i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .login-header h3 {
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .login-body {
+            padding: 2.5rem 2rem;
+            background: var(--bg-secondary);
+        }
+        
+        .form-label {
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-control {
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+        
+        .input-group-text {
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-color);
+            border-right: none;
+            color: var(--text-secondary);
+            border-radius: 10px 0 0 10px;
+        }
+        
+        .input-group .form-control {
+            border-left: none;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .btn-login {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 10px;
+            background: var(--primary);
+            border: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .btn-login:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+        }
+        
+        .btn-login:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .theme-toggle-login {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .theme-toggle-login:hover {
+            background: var(--bg-hover);
+        }
+        
+        .theme-toggle-login .bi-moon-fill {
+            display: none;
+        }
+        
+        .theme-toggle-login .bi-sun-fill {
+            display: inline;
+        }
+        
+        [data-theme="dark"] .theme-toggle-login .bi-moon-fill {
+            display: inline;
+        }
+        
+        [data-theme="dark"] .theme-toggle-login .bi-sun-fill {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle-login" onclick="toggleTheme()">
+        <i class="bi bi-moon-fill"></i>
+        <i class="bi bi-sun-fill"></i>
+    </button>
+
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <i class="bi bi-newspaper"></i>
+                <h3>Newsletter Pro</h3>
+                <p class="mb-0">Admin Dashboard</p>
+            </div>
+            
+            <div class="login-body">
+                <div id="alert-container"></div>
+                
+                <form id="login-form" onsubmit="handleLogin(event)">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="bi bi-person"></i>
+                            </span>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                id="username" 
+                                name="username"
+                                placeholder="Enter your username" 
+                                required
+                                autocomplete="username"
+                            >
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="password" class="form-label">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="bi bi-lock"></i>
+                            </span>
+                            <input 
+                                type="password" 
+                                class="form-control" 
+                                id="password" 
+                                name="password"
+                                placeholder="Enter your password" 
+                                required
+                                autocomplete="current-password"
+                            >
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-login" id="login-btn">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>
+                        Sign In
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Theme Switcher -->
+    <script src="js/theme.js"></script>
+    <!-- Auth Module -->
+    <script src="js/auth.js"></script>
+    
+    <script>
+        // Redirect if already logged in
+        if (isAuthenticated()) {
+            window.location.href = 'index.html';
+        }
+        
+        async function handleLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const loginBtn = document.getElementById('login-btn');
+            const alertContainer = document.getElementById('alert-container');
+            
+            // Clear previous alerts
+            alertContainer.innerHTML = '';
+            
+            // Disable button and show loading
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Signing in...';
+            
+            try {
+                const result = await login(username, password);
+                
+                if (result.success) {
+                    // Show success message
+                    alertContainer.innerHTML = `
+                        <div class="alert alert-success" role="alert">
+                            <i class="bi bi-check-circle me-2"></i>
+                            Login successful! Redirecting...
+                        </div>
+                    `;
+                    
+                    // Redirect to dashboard
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1000);
+                } else {
+                    // Show error message
+                    alertContainer.innerHTML = `
+                        <div class="alert alert-danger" role="alert">
+                            <i class="bi bi-exclamation-triangle me-2"></i>
+                            ${result.error}
+                        </div>
+                    `;
+                    
+                    // Re-enable button
+                    loginBtn.disabled = false;
+                    loginBtn.innerHTML = '<i class="bi bi-box-arrow-in-right me-2"></i>Sign In';
+                }
+            } catch (error) {
+                alertContainer.innerHTML = `
+                    <div class="alert alert-danger" role="alert">
+                        <i class="bi bi-exclamation-triangle me-2"></i>
+                        An error occurred. Please try again.
+                    </div>
+                `;
+                
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = '<i class="bi bi-box-arrow-in-right me-2"></i>Sign In';
+            }
+        }
+    </script>
+</body>
+</html>
