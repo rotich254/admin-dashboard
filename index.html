@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newsletter Dashboard - Admin</title>
+    <title>Softwiz Pro Dashboard - Admin</title>
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -27,10 +27,12 @@
             <a href="subscribers.html" class="nav-link">
                 <i class="bi bi-people"></i>
                 <span>Subscribers</span>
+                <span class="nav-badge" id="subscribers-badge" style="display: none;">0</span>
             </a>
             <a href="messages.html" class="nav-link">
                 <i class="bi bi-envelope"></i>
                 <span>Messages</span>
+                <span class="nav-badge" id="messages-badge" style="display: none;">0</span>
             </a>
             <a href="compose.html" class="nav-link">
                 <i class="bi bi-pencil-square"></i>
@@ -157,6 +159,8 @@
     <script src="js/auth.js"></script>
     <!-- API Module -->
     <script src="js/api.js"></script>
+    <!-- Notifications -->
+    <script src="js/notifications.js"></script>
     <!-- Custom JS -->
     <script src="js/dashboard.js"></script>
 </body>
