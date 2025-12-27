@@ -101,6 +101,45 @@
         </div>
     </div>
 
+    <!-- Reply Modal -->
+    <div class="modal fade" id="replyModal" tabindex="-1" aria-labelledby="replyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="replyModalLabel">
+                        <i class="bi bi-reply me-2"></i>Reply to Message
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="reply-form" onsubmit="sendReply(event)">
+                        <div class="mb-3">
+                            <label for="reply-to" class="form-label">To</label>
+                            <input type="email" class="form-control" id="reply-to" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reply-subject" class="form-label">Subject</label>
+                            <input type="text" class="form-control" id="reply-subject" required placeholder="Enter subject...">
+                        </div>
+                        <div class="mb-3">
+                            <label for="reply-content" class="form-label">Message</label>
+                            <textarea class="form-control" id="reply-content" rows="8" required placeholder="Write your reply here..."></textarea>
+                        </div>
+                        <div id="reply-alert-container"></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i>Cancel
+                    </button>
+                    <button type="submit" form="reply-form" class="btn btn-primary" id="send-reply-btn">
+                        <i class="bi bi-send me-1"></i>Send Reply
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     <script src="js/theme.js"></script>

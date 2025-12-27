@@ -1,7 +1,7 @@
 // API Request Wrapper
 // Handles authenticated API requests with automatic token refresh
 
-const API_BASE_URL = 'http://localhost:8000/api';
+const API_BASE_URL = 'https://newsletter-api-tlzp.onrender.com/api';
 
 /**
  * Make an authenticated API request

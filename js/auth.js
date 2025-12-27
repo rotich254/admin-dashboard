@@ -1,7 +1,7 @@
 // Authentication Utility Module
 // Handles JWT token management and authentication state
 
-const API_URL = 'http://localhost:8000/api';
+const API_URL = 'https://newsletter-api-tlzp.onrender.com/api';
 
 // Token Management
 function setTokens(accessToken, refreshToken) {
